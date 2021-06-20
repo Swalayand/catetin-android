@@ -9,30 +9,67 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.webkit.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends Activity {
+public class MainActivity extends WifiBaseActivity {
+
+    protected String wifiSSID = "Catetin Timbangan";
+    protected String wifiPass = "Passwordnyatimbangan31";
+
+    public void setWifiSSID(String wifiSSID) {
+        this.wifiSSID = wifiSSID;
+    }
+
+    public void setWifiPass(String wifiPass) {
+        this.wifiPass = wifiPass;
+    }
 
 
-    private List list;
-    private ListView listView;
-    private ListviewAdapter adpter;
-    public void onCreate(Bundle b){
+    @Override
+    protected int getSecondsTimeout() {
+        return 10000;
+    }
+
+    @Override
+    protected String getWifiSSID() {
+        return wifiSSID;
+
+    }
+
+    @Override
+    protected String getWifiPass() {
+        return wifiPass;
+
+    }
+
+    public WebView webView;
+
+    @Override
+    protected void onCreate(Bundle b) {
         super.onCreate(b);
         setContentView(R.layout.activity_main);
+        webView = (WebView) findViewById(R.id.webview); // (WebView) adalah type casting di java. Kotlin type casting pakai "as"
+        WebSettings webSettings = webView.getSettings();
 
-        list = new ArrayList<Integer>();
-        listView =(ListView)findViewById(R.id.listview);
-        listView.setItemsCanFocus(true);
-        for(int i=0;i<30;i++){
-            list.add(i);
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setAllowFileAccess(true);
+        webSettings.setAllowContentAccess(true);
+        webSettings.setAllowFileAccessFromFileURLs(true);
+        webSettings.setAllowUniversalAccessFromFileURLs(true);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            webSettings.setAllowFileAccessFromFileURLs(true);
         }
-        adpter=new ListviewAdapter(this,list);
-        listView.setAdapter(adpter);
+        
+        webView.loadUrl("file:///android_asset/raw/main.html");
+
     }
+
+    public void onClick(View view){
+        handleWIFI();
+    }
+
 }

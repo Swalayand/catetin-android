@@ -1,0 +1,10 @@
+<resources>
+    <string name="wifi_disabled">WIFI nonaktif. Aktifkan?</string>
+    <string name="enable_wifi">Aktifkan</string>
+    <string name="still_disable_wifi">Tidak</string>
+    <string name="close_dialog">OK</string>
+    <string name="wifi_not_found">%s tidak ditemukan.</string>
+    <string name="wifi_not_connected">Tidak dapat tersambung ke %s</string>
+    <string name="connecting_to_wifi">Menyambungkan ke : %s</string>
+    <string name="connecting">Menyambungkan...</string>
+</resources>

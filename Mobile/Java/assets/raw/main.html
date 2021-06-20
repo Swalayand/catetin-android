@@ -1,0 +1,29 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script type="text/javascript">
+		function loadDoc() {
+			var xhttp = new XMLHttpRequest();
+			let url = new URL('http://192.168.4.1');
+			xhttp.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById("content-wrapper").innerHTML += this.responseText + "<br>";
+				}
+			};
+			xhttp.open("GET", url);
+			xhttp.setRequestHeader("Content-type", "text/plain; charset=UTF-8");
+			xhttp.send();
+		};
+		setInterval('loadDoc()', 2000); 
+	</script>
+</head>
+
+<body>
+	<div id="content-wrapper">
+		<h1>The XMLHttpRequest Object</h1>
+		<button type="button" onclick="loadDoc()">Change Content</button>
+	</div>
+</body>
+
+</html>

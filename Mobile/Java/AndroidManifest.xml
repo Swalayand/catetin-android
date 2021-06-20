@@ -11,10 +11,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-feature android:name="android.hardware.wifi" />
-    <application android:label="CHART"
+    <application android:label="Catetin"
         android:allowBackup="true"
-        android:supportsRtl="true">
-        <activity android:name=".MainActivity" android:launchMode="singleTop">
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity" android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

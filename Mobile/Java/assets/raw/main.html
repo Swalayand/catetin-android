@@ -5,7 +5,7 @@
 	<script type="text/javascript">
 		function loadDoc() {
 			var xhttp = new XMLHttpRequest();
-			let url = new URL('http://192.168.4.1');
+			let url = new URL('http://192.168.4.1'); //https://javascript.info/xmlhttprequest
 			xhttp.onreadystatechange = function () {
 				if (this.readyState == 4 && this.status == 200) {
 					document.getElementById("content-wrapper").innerHTML += this.responseText + "<br>";

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.webkit.*;
+import android.net.wifi.WifiManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,7 @@ public class MainActivity extends WifiBaseActivity {
 
     public WebView webView;
 
+ 
     @Override
     protected void onCreate(Bundle b) {
         super.onCreate(b);

@@ -76,6 +76,13 @@ public abstract class WifiBaseActivity extends Activity {
     //handleWIFI();
   }
 
+  protected void WIFI_IP() {
+    WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+    WifiInfo wifiInfo = wifi.getConnectionInfo();
+    int ip = wifiInfo.getIpAddress();
+    String ipString = String.format("%d.%d.%d.%d", (ip & 0xff), (ip >> 8 & 0xff), (ip >> 16 & 0xff), (ip >> 24 & 0xff));  
+    return ipString;
+  }
   /**
    * Start connecting to specific wifi network
    */

@@ -1,7 +1,13 @@
 #!/bin/bash 
 
-BUILD_TOOLS="/home/u/app/androidtoolcmd" 
-PLATFORM="/home/u/app/androidtoolcmd"
+# BUILD_TOOLS="/home/u/app/androidtoolcmd" 
+# PLATFORM="/home/u/app/androidtoolcmd"
+
+SDK="${HOME}/app/android"
+# NDK="${HOME}/android-ndk-r13b"
+
+BUILD_TOOLS="${SDK}/build-tools/30.0.3"
+PLATFORM="${SDK}/platforms/android-33"
 
 rm -rf build;
 mkdir -p build/gen build/obj build/apk
@@ -13,7 +19,7 @@ echo "Run first aapt"
 # kotlinc -classpath "${PLATFORM}/android.jar" -d build/obj build/gen/umar/hello/R.java java/umar/hello/MainActivity.kt
 
 echo "Run javac"
-javac -source 1.7 -target 1.7 -bootclasspath "${JAVA_HOME}/jre/lib/rt.jar" -classpath "${PLATFORM}/android.jar" -d build/obj build/gen/id/pt2021m/R.java java/id/pt2021m/*.java
+javac -source 1.8 -target 1.8 -bootclasspath "${JAVA_HOME}/jre/lib/rt.jar" -classpath "${PLATFORM}/android.jar" -d build/obj build/gen/id/pt2021m/R.java java/id/pt2021m/*.java
 
 echo "Run ${BUILD_TOOLS}/dx"
 "${BUILD_TOOLS}/dx" --dex --output=build/apk/classes.dex build/obj/
@@ -25,12 +31,11 @@ echo "Run second aapt"
 echo "Run ${BUILD_TOOLS}/zipalign"
 "${BUILD_TOOLS}/zipalign" -f -p 4 build/PT2021M.unsigned.apk build/PT2021M.aligned.apk
 
-
 echo "Run apksigner"
-/home/u/app/androidtoolcmd/apksigner  sign --ks keystore.jks --ks-key-alias androidkey --ks-pass pass:android  --key-pass pass:android --v1-signing-enabled true --v1-signer-name CERT --v2-signing-enabled true --out build/PT2021M.apk  build/PT2021M.aligned.apk
+"${BUILD_TOOLS}/apksigner" sign --ks keystore.jks --ks-key-alias androidkey --ks-pass pass:android --key-pass pass:android --out build/PT2021M.apk build/PT2021M.aligned.apk
 
 # echo "Install to device"
-time adb install -r build/PT2021M.apk 
+# time adb install -r build/PT2021M.apk 
 
 echo "Done!"
 

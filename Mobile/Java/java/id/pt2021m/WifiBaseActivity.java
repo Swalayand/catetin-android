@@ -76,7 +76,7 @@ public abstract class WifiBaseActivity extends Activity {
     //handleWIFI();
   }
 
-  protected void WIFI_IP() {
+  protected String WIFI_IP() {
     WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
     WifiInfo wifiInfo = wifi.getConnectionInfo();
     int ip = wifiInfo.getIpAddress();
